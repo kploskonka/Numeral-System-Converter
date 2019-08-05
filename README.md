@@ -1,6 +1,6 @@
-#Numeral System Converter
+# Numeral System Converter
 Convert number in any numeral system to whichever system you want. Fractions supported.
-###Usage:
+### Usage:
 - Enter the number's source numeral system (1-36)
 - Enter the number you want to convert i.e 3.142
 - Enter the desired numeral system (1-36)
