@@ -27,7 +27,7 @@ public class Main {
                 } else if (sourceRadix == 1) {
                     ConverterUtil.oneToRadix(numberInteger.length(), targetRadix);
                 } else {
-                    ConverterUtil.decimalToOne(Integer.parseInt(numberInteger));
+                    ConverterUtil.decimalToOne(decimalNumber);
                 }
             } else if (validatedInput.length == 5) {
                 String numberFraction = validatedInput[4];
@@ -45,7 +45,7 @@ public class Main {
                         System.out.println("Fraction does not match with its source radix!");
                     }
                 } else {
-                    ConverterUtil.decimalToOne(Integer.parseInt(numberInteger, sourceRadix));
+                    ConverterUtil.decimalToOne(decimalNumber);
                 }
             }
         }
