@@ -17,7 +17,7 @@ public class InputValidator {
                     if (isInBounds(targetRadix)) {
                         String[] strings = stringNumber.split("\\.");
                         int numberInDecimal;
-                        
+
                         try {
                             numberInDecimal = Integer.parseInt(strings[0], sourceRadix);
                         } catch (NumberFormatException e) {
@@ -34,11 +34,11 @@ public class InputValidator {
                         }
                     }
                 } else {
-                    System.out.println("Target radix must be a number!");
+                    System.out.println("Target radix must be an integer!");
                 }
             }
         } else {
-            System.out.println("Source radix must be a number!");
+            System.out.println("Source radix must be an integer!");
         }
 
         return null;
