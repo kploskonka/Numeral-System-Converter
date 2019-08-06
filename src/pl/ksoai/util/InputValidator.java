@@ -9,35 +9,36 @@ public class InputValidator {
             int sourceRadix = scanner.nextInt();
 
             if (isInBounds(sourceRadix)) {
-                String stringNumber = scanner.next();
+                String stringNumber = scanner.next().toLowerCase();
 
                 if (scanner.hasNextInt()) {
                     int targetRadix = scanner.nextInt();
 
                     if (isInBounds(targetRadix)) {
                         String[] strings = stringNumber.split("\\.");
+                        int numberInDecimal;
 
-                        for (String string : strings) {
-                            if (!string.matches("\\d+")) {
-                                System.out.println("You must enter a valid number! (optionally with a fraction i.e. 1.23)");
-                                return null;
-                            }
+                        try {
+                            numberInDecimal = Integer.parseInt(strings[0], sourceRadix);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Number does not match with its source radix!");
+                            return null;
                         }
 
                         if (strings.length == 1) {
-                            return new String[] {String.valueOf(sourceRadix), String.valueOf(targetRadix), strings[0]};
+                            return new String[] {String.valueOf(sourceRadix), String.valueOf(targetRadix), String.valueOf(numberInDecimal), strings[0]};
                         } else if (strings.length == 2) {
-                            return new String[] {String.valueOf(sourceRadix), String.valueOf(targetRadix), strings[0], strings[1]};
+                            return new String[] {String.valueOf(sourceRadix), String.valueOf(targetRadix), String.valueOf(numberInDecimal), strings[0], strings[1]};
                         } else {
-                            System.out.println("You must enter a valid number! (optionally with a fraction i.e. 1.23)");
+                            System.out.println("You must enter a valid number optionally with a fraction! i.e. 1.23");
                         }
                     }
                 } else {
-                    System.out.println("Target radix must be a number!");
+                    System.out.println("Target radix must be an integer!");
                 }
             }
         } else {
-            System.out.println("Source radix must be a number!");
+            System.out.println("Source radix must be an integer!");
         }
 
         return null;

@@ -16,33 +16,36 @@ public class Main {
         if (validatedInput != null) {
             int sourceRadix = Integer.parseInt(validatedInput[0]);
             int targetRadix = Integer.parseInt(validatedInput[1]);
-            String numberInteger = validatedInput[2];
+            int decimalNumber = Integer.parseInt(validatedInput[2]);
+            String numberInteger = validatedInput[3];
 
-            if (validatedInput.length == 3) {
+            if (validatedInput.length == 4) {
                 if (sourceRadix == targetRadix) {
                     System.out.println(numberInteger);
                 } else if (sourceRadix != 1 && targetRadix != 1) {
-                    int decimalNumber = Integer.parseInt(numberInteger, sourceRadix);
-
-                    System.out.println(ConverterUtil.decimalToRadix(decimalNumber, targetRadix));
+                    ConverterUtil.decimalToRadix(decimalNumber, targetRadix);
                 } else if (sourceRadix == 1) {
                     ConverterUtil.oneToRadix(numberInteger.length(), targetRadix);
                 } else {
-                    ConverterUtil.decimalToOne(Integer.parseInt(numberInteger));
+                    ConverterUtil.decimalToOne(decimalNumber);
                 }
-            } else if (validatedInput.length == 4) {
-                String numberFraction = validatedInput[3];
+            } else if (validatedInput.length == 5) {
+                String numberFraction = validatedInput[4];
 
                 if (sourceRadix == targetRadix) {
                     System.out.println(numberInteger + "." + numberFraction);
                 } else if (targetRadix != 1) {
-                    int decimalNumber = Integer.parseInt(numberInteger, sourceRadix);
-                    double fraction = FractionParser.parseFraction(numberFraction, sourceRadix);
+                    try {
+                        double fraction = FractionParser.parseFraction(numberFraction, sourceRadix);
 
-                    System.out.println(ConverterUtil.decimalToRadix(decimalNumber, targetRadix) + "."
-                            + ConverterUtil.fractionToRadix(fraction, targetRadix));
+                        ConverterUtil.decimalToRadix(decimalNumber, targetRadix);
+                        System.out.print(".");
+                        ConverterUtil.fractionToRadix(fraction, targetRadix);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Fraction does not match with its source radix!");
+                    }
                 } else {
-                    ConverterUtil.decimalToOne(Integer.parseInt(numberInteger, sourceRadix));
+                    ConverterUtil.decimalToOne(decimalNumber);
                 }
             }
         }
